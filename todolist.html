@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<title>Awesome to-do list html,css & javaScript</title>
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300i,400,400i,500,600,700,800" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="style3.css">
+    </head>
+    <body>
+        <div class="temp_container">
+            <div class="addTask">
+                <input type="text" placeholder="Add a Task">
+                <button>Add</button>
+        </div>
+        <ol class="notCompleted">
+            <h3> Not Completed</h3>
+           
+        </ol>
+         
+        <ol class="Completed">
+            <h3>Completed</h3>
+            
+        </ol>
+        </div>
+        <script>
+            const input = document.querySelector('input');
+            const btn = document.querySelector('.addTask > button');
+
+            btn.addEventListener('click', addList);
+            input.addEventListener('keyup' , (e)=>{
+            (e.keyCode === 13 ? addList(e) : null);
+
+            })
+
+            function addList(e){
+                const notCompleted = document.querySelector('.notCompleted');
+                const Completed = document.querySelector('.Completed');
+
+                coust newLi = document.createElement('li');
+                coust checkBtn = document.createElement('button');
+                coust delBtn = document.createElement('button');
+
+                checkBtn.innerHTML = '<i class="fa fa-check"></i>';
+                delBtn.innerHTML ='<i class="fa fa-trash"></i>';
+
+                if(input.value !==''){
+                    newLi.textContent =input.value;
+                    input.value = '';
+                    notCompleted.appendChild(newLi);
+                    newLi.appendChild(checkBtn);
+                    newLi.appendChild(delBtn);
+                }
+                checkBtn.addEventListener('click', function(){
+                    const parent = this.parentNode;
+                    parent.remove();
+                    Completed.appendChild(parent);
+                    checkBtn.style.display = 'none';
+
+                });
+                delBtn.addEventListener('click', function(){
+                    const parent = this.parentNode;
+                    parent.remove();
+                   
+                    
+                });
+            }
+
+        </script>
+    </body>
+    </html>
